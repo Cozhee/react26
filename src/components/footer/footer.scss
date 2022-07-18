@@ -1,0 +1,10 @@
+$backgroundColor: #6505b5;
+$textColor: white;
+
+footer {
+  background: $backgroundColor;
+  border-top: 1px solid #eee;
+  padding: 1em 3em;
+  margin: 0;
+  color: $textColor;
+}

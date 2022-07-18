@@ -1,0 +1,8 @@
+$boxShadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
+section {
+  margin: auto;
+  border: 1px gray solid;
+  box-shadow: $boxShadow;
+  padding: 3vw;
+}
