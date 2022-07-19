@@ -1,12 +1,13 @@
-import React from 'react';
-import './results.scss'
+import React from "react";
+import "./results.scss";
 
-function Results({ data }) {
-    return (
-      <section>
-        <pre>{data ? JSON.stringify(data, undefined, 2) : null}</pre>
-      </section>
-    );
+function Results({ data, count }) {
+  return (
+    <section>
+      <p>Number of calls: {count}</p>
+      <pre>{data ? JSON.stringify(data, undefined, 2) : null}</pre>
+    </section>
+  );
 }
 
 export default Results;

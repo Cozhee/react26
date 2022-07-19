@@ -1,35 +1,71 @@
-import React from 'react';
+import { useState } from "react";
 
-import './form.scss';
+import "./form.scss";
 
-function Form({ handleApiCall })  {
+function Form({ handleApiCall, handleCount }) {
+  const [url, setUrl] = useState("");
+  const [method, setMethod] = useState("GET");
+  const [isActive, setIsActive] = useState("GET");
+  const [text, setText] = useState("");
 
-  const handleSubmit = e => {
+  const apiURL = url;
+  const apiMethod = method;
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    handleCount();
     const formData = {
-      method:'GET',
-      url: 'https://pokeapi.co/api/v2/pokemon',
+      url: apiURL,
+      method: apiMethod,
+      text,
     };
     handleApiCall(formData);
-  }
+  };
 
-    return (
-      <>
-        <form onSubmit={handleSubmit}>
-          <label >
-            <span>URL: </span>
-            <input name='url' type='text' />
-            <button type="submit">GO!</button>
-          </label>
-          <label className="methods">
-            <span id="get">GET</span>
-            <span id="post">POST</span>
-            <span id="put">PUT</span>
-            <span id="delete">DELETE</span>
-          </label>
-        </form>
-      </>
-    );
+  const handleMethod = (e, type) => {
+    e.preventDefault();
+    setMethod(type);
+    setIsActive(type);
+  };
+
+  const buttons = ["GET", "POST", "PUT", "DELETE"];
+
+  return (
+    <>
+      <form data-testid="test-form" onSubmit={handleSubmit}>
+        <label>
+          <span>URL: </span>
+          <input
+            onChange={(e) => setUrl(e.target.value)}
+            name="url"
+            type="text"
+            data-testid="test-input"
+          />
+          {method === "POST" || method === "PUT" ? (
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            ></textarea>
+          ) : null}
+          <button data-testid="test-button" type="submit">
+            GO!
+          </button>
+        </label>
+        <label className="methods">
+          {buttons.map((button) => (
+            <button
+              className={isActive === button ? "active-button" : undefined}
+              onClick={(e) => handleMethod(e, button)}
+              key={button}
+              id={button}
+            >
+              {button}
+            </button>
+          ))}
+        </label>
+      </form>
+    </>
+  );
 }
 
 export default Form;
