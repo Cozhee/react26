@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./form.scss";
 
-function Form({ handleApiCall, handleCount }) {
+function Form({ updateRequestParams, handleCount }) {
   const [url, setUrl] = useState("");
   const [method, setMethod] = useState("GET");
   const [isActive, setIsActive] = useState("GET");
@@ -19,7 +19,7 @@ function Form({ handleApiCall, handleCount }) {
       method: apiMethod,
       text,
     };
-    handleApiCall(formData);
+    updateRequestParams(formData);
   };
 
   const handleMethod = (e, type) => {

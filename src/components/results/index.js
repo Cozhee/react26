@@ -5,7 +5,9 @@ function Results({ data, count }) {
   return (
     <section>
       <p>Number of calls: {count}</p>
-      <pre>{data ? JSON.stringify(data, undefined, 2) : null}</pre>
+      <pre data-testid="test-results">
+        {data ? JSON.stringify(data, undefined, 2) : null}
+      </pre>
     </section>
   );
 }
