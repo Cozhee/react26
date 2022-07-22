@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./form.scss";
 
-function Form({ updateRequestParams, handleCount }) {
+function Form({ updateRequestParams }) {
   const [url, setUrl] = useState("");
   const [method, setMethod] = useState("GET");
   const [isActive, setIsActive] = useState("GET");
@@ -13,7 +13,6 @@ function Form({ updateRequestParams, handleCount }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleCount();
     const formData = {
       url: apiURL,
       method: apiMethod,
